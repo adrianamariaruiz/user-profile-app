@@ -1,0 +1,25 @@
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+
+  .image{
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+
+@media (width > 768px){  /*tablet*/
+.nav{
+  border: 1px solid pink;
+  justify-content: end;
+  gap: 20px;
+}
+}
