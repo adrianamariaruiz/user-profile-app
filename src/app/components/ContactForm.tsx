@@ -3,6 +3,13 @@
 import { FormEvent, useState } from "react"
 import styles from "./contactForm.module.css"
 import stylesModal from "../page.module.css"
+import { titleFont } from "../config/fonts"
+
+interface Errors {
+  name?: string
+  email?: string
+  message?: string
+}
 
 const ContactForm = () => {
 
@@ -10,11 +17,71 @@ const ContactForm = () => {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [open, setOpen] = useState(false)
+  const [errors, setErrors] = useState<Errors>({});
+
+  const [errorMesagge, setErrorMesagge] = useState('')
+
+  const expresions = {
+    userEmail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-.]+$/
+  }
+
+  const validations = () => {
+    let isError = false
+    let errors: Errors = {}
+
+    if(!name.trim()){
+      errors.name = 'El campo del nombre esta vacío'
+      isError= true
+    }
+    if(!email.trim()){
+      errors.email = 'El campo del email esta vacío'
+      isError= true
+    }else if(!expresions.userEmail.test(email) ){
+      errors.email = 'El formato del email esta incorrecto'
+      isError= true
+    }
+    if(!message.trim()){
+      errors.message = 'El campo del email esta vacío'
+      isError= true
+    }
+
+    setErrors(errors);
+    return isError ? errors : null
+    // return Object.keys(newErrors).length === 0;
+  }
+
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('enviada la informacion')
-    setOpen(true)
+    let isError = false
+    let errors: Errors = {}
+
+    if(!name.trim()){
+      errors.name = 'El campo del nombre esta vacío'
+      isError= true
+    }
+    if(!email.trim()){
+      errors.email = 'El campo del email esta vacío'
+      isError= true
+    }else if(!expresions.userEmail.test(email) ){
+      errors.email = 'El formato del email esta incorrecto'
+      isError= true
+    }
+    if(!message.trim()){
+      errors.message = 'El campo del email esta vacío'
+      isError= true
+    }
+
+    setErrors(errors);
+
+    if(!isError){
+      setOpen(true)
+      // setErrorMesagge('')
+      setEmail('')
+      setName('')
+      setMessage('')
+      setErrors({})
+    }
   }
 
   const closeModal= () => {
@@ -32,43 +99,52 @@ const ContactForm = () => {
         </div>
       </article>
 
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <h2 className={styles.title}>Formulario</h2>
-        <label htmlFor="name" className={styles.label}>
-          Nombre
-          <input 
-            className={styles.input}
-            type="text" 
-            id="name"
-            name="name"
-            placeholder="Nombre"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label htmlFor="email" className={styles.label}>
-          Email
-          <input 
-            className={styles.input}
-            type="email" 
-            id="email"
-            name="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <label htmlFor="message" className={styles.label}>
-          Mensaje
+      <form className={styles.form} onSubmit={handleSubmit} autoComplete="off">
+        <h1 className={`${titleFont.className} ${styles.title}`}>Formulario</h1>
+        <div className={styles.input__cont}>
+            <input 
+              className={errors.name ? styles.input__error : styles.input}
+              type="text" 
+              id="name"
+              name="name"
+              value={name}
+              // required
+              onChange={(e) => setName(e.target.value)}
+            />
+          <label htmlFor="name" className={styles.label}>
+            Nombre
+          </label>
+        </div>
+        {errors.name && <p className={styles.message__error}>{errors.name}</p>}
+        <div className={styles.input__cont}>
+            <input 
+              className={errors.email ? styles.input__error : styles.input}
+              type="email" 
+              id="email"
+              name="email"
+              // required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label htmlFor="email" className={styles.label}>
+            Email
+          </label>
+        </div>
+        {errors.email && <p className={styles.message__error}>{errors.email}</p>}
+        <div className={styles.input__cont}>
           <textarea 
-            className={styles.textarea}
+            className={errors.message ? styles.textarea__error : styles.textarea}
             name="message" 
             id="message"
-            placeholder="Deja tu mensaje..."
+            // required
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
+        <label htmlFor="message" className={styles.label}>
+          Deja tu mensaje
         </label>
+        </div>
+        {errors.message && <p className={styles.message__error}>{errors.message}</p>}
         <button type="submit" className={styles.btn__primary} >Enviar</button>
       </form>
     </div>

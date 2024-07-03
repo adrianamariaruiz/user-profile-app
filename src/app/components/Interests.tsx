@@ -1,15 +1,16 @@
+import { titleFont } from "../config/fonts"
 import { users } from "../usersMock/usersMock"
 import styles from "./interests.module.css"
 
 const Interests = () => {
   return (
-    <section className={styles.about__section}>
-      <div className={styles.about}>
-        <h1 className={styles.h1}>Mis intereses</h1>
-        <ul className={styles.list}>
+    <section className={styles.interest__section}>
+      <div className={styles.interest}>
+        <h1 className={`${titleFont.className} ${styles.h1}`}>Mis intereses</h1>
+        <ul className={styles.ulist}>
           {
             users[0].interests?.map( (item, index) => (
-              <li key={index}>{item}</li>
+              <li key={index} className={styles.list}>{item}</li>
             ) )
           }
         </ul>

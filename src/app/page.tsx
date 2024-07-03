@@ -6,11 +6,13 @@ import ContactForm from "./components/ContactForm";
 
 export default function Home() {
   return (
-    <div>
-      <Navbar/>
-      <About/>
-      <Interests/>
-      <ContactForm/>
-    </div>
+    <>
+      <div className={styles.container}>
+        <Navbar/>
+        <About/>
+        <Interests/>
+        <ContactForm/>
+      </div>
+    </>
   );
 }

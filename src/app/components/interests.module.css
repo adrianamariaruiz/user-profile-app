@@ -1,9 +1,9 @@
-.about__section{
-  padding: 50px 10px;
+.interest__section{
+  padding: 30px 10px;
   display: flex;
   justify-content: center;
   
-  .about{
+  .interest{
     width: 100vw;
     max-width: 1024px;
     display: flex;
@@ -16,9 +16,8 @@
 
     .list{
       width: 100%;
-      padding: 20px 0px;
-      list-style: none;
+      padding: 10px 0px;
+      gap: 10px;
     }
   }
-
 }

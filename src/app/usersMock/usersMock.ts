@@ -8,11 +8,11 @@ export const users:user[] = [
     avatar: 'https://github.com/adrianamariaruiz.png',
     about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur accusamus vero, in vel natus quam facilis praesentium enim ducimus suscipit molestias quas iste laboriosam perferendis? Vero possimus, eum dicta praesentium nam saepe optio culpa debitis eaque voluptas itaque vel qui! Cumque velit obcaecati, deserunt est impedit itaque sit. Aspernatur, magni!',
     interests: [
-      'interes 1',
-      'interes 2',
-      'interes 3',
-      'interes 4',
-      'interes 5',
+      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam ipsam nisi ullam nihil? Omnis corporis, numquam quas dolores eligendi aliquid.',
+      'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt est impedit itaque sit. Aspernatur, magni!',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur accusamus vero, in vel natus quam facilis praesentium enim ducimus suscipit molestias quas iste laboriosam perferendis? Vero possimus, eum dicta praesentium nam saepe optio culpa debitis eaque voluptas itaque vel qui!',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     ]
   },
   {
