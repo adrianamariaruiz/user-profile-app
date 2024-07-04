@@ -23,31 +23,6 @@ const ContactForm = () => {
     userEmail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-.]+$/
   }
 
-  const validations = () => {
-    let isError = false
-    let errors: Errors = {}
-
-    if(!name.trim()){
-      errors.name = 'El campo del nombre esta vacío'
-      isError= true
-    }
-    if(!email.trim()){
-      errors.email = 'El campo del email esta vacío'
-      isError= true
-    }else if(!expresions.userEmail.test(email) ){
-      errors.email = 'El formato del email esta incorrecto'
-      isError= true
-    }
-    if(!message.trim()){
-      errors.message = 'El campo del email esta vacío'
-      isError= true
-    }
-
-    setErrors(errors);
-    return isError ? errors : null
-  }
-
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     let isError = false
@@ -68,7 +43,6 @@ const ContactForm = () => {
       errors.message = 'El campo del email esta vacío'
       isError= true
     }
-
     setErrors(errors);
 
     if(!isError){
