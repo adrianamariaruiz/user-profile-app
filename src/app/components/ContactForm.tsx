@@ -19,8 +19,6 @@ const ContactForm = () => {
   const [open, setOpen] = useState(false)
   const [errors, setErrors] = useState<Errors>({});
 
-  const [errorMesagge, setErrorMesagge] = useState('')
-
   const expresions = {
     userEmail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-.]+$/
   }
@@ -47,7 +45,6 @@ const ContactForm = () => {
 
     setErrors(errors);
     return isError ? errors : null
-    // return Object.keys(newErrors).length === 0;
   }
 
 
@@ -76,7 +73,6 @@ const ContactForm = () => {
 
     if(!isError){
       setOpen(true)
-      // setErrorMesagge('')
       setEmail('')
       setName('')
       setMessage('')
