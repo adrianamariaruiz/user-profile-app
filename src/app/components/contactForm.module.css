@@ -36,7 +36,7 @@
     }
 
     .message__error{
-      width: 80%;
+      width: 100%;
       color: red;
       text-align: left;
       margin-bottom: 10px;
@@ -49,18 +49,18 @@
 
       .label{
         position: absolute;
-        top: -10px;
-        left: 0px;
-        margin: 0 10px;
-        padding: 0 10px;
-        background-color: #111E3E;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        pointer-events: none;
+        transition: .3s;
       }
 
-      .input{
+      .input__form{
         width: 100%;
         color: white;
         border-radius:5px;
-        padding: 15px 6px;
+        padding: 15px 20px;
         background-color: transparent;
         border: 1px solid #19EB00;
         outline: none;
@@ -69,29 +69,51 @@
           border: 1px solid #19EB00;
           background-color: transparent;
         }
-       
+
         &:focus{
           background-color: transparent;
           border: 2px solid #19EB00;
           box-shadow: 2px 2px 2px #18eb008b;
         }
+
+        &:focus ~ label,
+        &:valid ~ label{
+          top: 0;
+          padding: 0 15px;
+          background-color: #111E3E;
+        }
       }
 
       .input__error{
+        position: relative;
         width: 100%;
         border-radius:5px;
-        padding: 15px 6px;
+        padding: 15px 15px;
         background-color: #111E3E;
         outline: none;
         color: white;
         border: 2px solid red;
+
+        &:valid ~ label{
+          color: red;
+          background-color: #111E3E;
+          padding: 4px 8px;
+        }
+
+        &:focus ~ label{
+          color: red;
+          top: 0;
+          font-style: 16px;
+          padding: 0 15px;
+          background-color: #111E3E;
+        }
       }
 
       .textarea{
         border: 1px solid #19EB00;
         border-radius: 5px;
         background-color: #111E3E;
-        padding: 20px 4px;
+        padding: 20px 20px;
         color: white;
         resize: none;
         min-height: 100px;
@@ -105,6 +127,14 @@
         &:focus{
           border: 2px solid #19EB00;
           box-shadow: 2px 2px 2px #18eb008b;
+        }
+
+        &:focus ~ label,
+        &:valid ~ label{
+          top: 0;
+          font-style: 16px;
+          padding: 0 15px;
+          background-color: #111E3E;
         }
       }
 

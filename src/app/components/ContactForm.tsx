@@ -67,12 +67,12 @@ const ContactForm = () => {
         <h1 className={`${titleFont.className} ${styles.title}`}>Formulario</h1>
         <div className={styles.input__cont}>
             <input 
-              className={errors.name ? styles.input__error : styles.input}
+              className={errors.name ? styles.input__error : styles.input__form}
               type="text" 
               id="name"
               name="name"
               value={name}
-              // required
+              required
               onChange={(e) => setName(e.target.value)}
             />
           <label htmlFor="name" className={styles.label}>
@@ -82,11 +82,11 @@ const ContactForm = () => {
         {errors.name && <p className={styles.message__error}>{errors.name}</p>}
         <div className={styles.input__cont}>
             <input 
-              className={errors.email ? styles.input__error : styles.input}
+              className={errors.email ? styles.input__error : styles.input__form}
               type="email" 
               id="email"
               name="email"
-              // required
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -97,10 +97,10 @@ const ContactForm = () => {
         {errors.email && <p className={styles.message__error}>{errors.email}</p>}
         <div className={styles.input__cont}>
           <textarea 
-            className={errors.message ? styles.textarea__error : styles.textarea}
+            className={`${errors.message ? styles.textarea__error : styles.input__form} ${styles.textarea}`}
             name="message" 
             id="message"
-            // required
+            required
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
