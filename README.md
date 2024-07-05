@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Pasos para instalar y ejecutar el proyecto
 
-First, run the development server:
-
+1. Clonar el repositorio desde el CMD con el comando
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/adrianamariaruiz/user-profile-app.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Ubicado en la carpeta del proyecto se debe instalar las dependencias con el comando:
+```bash
+ npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Para abrir el proyecto desde la CMD en Visual Studio Code use el comando
+```bash
+code .
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Para ejecutar el servidor de desarrollo desde la terminal de Visual Studio Code
+```bash
+npm run dev
+```
 
-## Learn More
+5. Abra el [http://localhost:3000](http://localhost:3000) en su buscador para visualizar la página web.
 
-To learn more about Next.js, take a look at the following resources:
+## Para correr los Tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para correr los test abra la termianl de Visual Studio Code y use el comando 
+```bash
+npm test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Informacion del proyecto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Imagenes de referencia de la página realizada
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<div>
+  <img width="auto" height="500" src="./public/imgs/mobile.jpg" alt="mobile-image"/>
+  <img width="auto" height="500" src="./public/imgs/tablet.jpg" alt="tablet-image"/>
+  <img width="auto" height="500" src="./public/imgs/desktop.jpg" alt="desktop-image"/>
+  <img width="auto" height="500" src="./public/imgs/modal.jpg" alt="modal-image"/>
+</div>
+
+
+### Proyecto realizado con: Next.js 14, TypeScript, CSS Modules, Jest, Testing Library
+### Desarrollado por: Adraiana Ruiz
+
+
+
+
