@@ -61,13 +61,7 @@ const ContactForm = () => {
   return (
     <div className={styles.contact__form}>
       
-      <article className={open ? stylesModal.modal : stylesModal.modal__open} onClick={closeModal}>
-        <div className={stylesModal.modal__dialog}>
-          <button className={stylesModal.btn__close} onClick={closeModal}>X</button>
-          <h1 className={stylesModal.modal__title}>¡Bien hecho!</h1>
-          <p className={stylesModal.modal__info}>La información se envió correctamente</p>
-        </div>
-      </article>
+      <div className={styles.prueba}></div>
 
       <form className={styles.form} onSubmit={handleSubmit} autoComplete="off">
         <h1 className={`${titleFont.className} ${styles.title}`}>Formulario</h1>
@@ -117,6 +111,14 @@ const ContactForm = () => {
         {errors.message && <p className={styles.message__error}>{errors.message}</p>}
         <button type="submit" className={styles.btn__primary} >Enviar</button>
       </form>
+
+      <article className={`${stylesModal.modal} ${open ? stylesModal.moda : stylesModal.modal__close}`} onClick={closeModal}>
+        <div className={stylesModal.modal__dialog}>
+          <button className={stylesModal.btn__close} onClick={closeModal}>X</button>
+          <h1 className={stylesModal.modal__title}>¡Bien hecho!</h1>
+          <p className={stylesModal.modal__info}>La información se envió correctamente</p>
+        </div>
+      </article>
     </div>
   )
 }

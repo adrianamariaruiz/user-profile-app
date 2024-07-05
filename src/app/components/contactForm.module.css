@@ -121,11 +121,11 @@
         outline: none;
       }
     }
+  }
+}
 
-    @media (width >= 768px){
-      .input__cont{
-        width: 80%;
-      }
-    }
+@media (width >= 768px){
+  .input__cont{
+    width: 80%;
   }
 }
