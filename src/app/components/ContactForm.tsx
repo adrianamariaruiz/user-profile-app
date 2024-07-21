@@ -1,9 +1,9 @@
 'use client'
 
-import { FormEvent, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import styles from "./contactForm.module.css"
-import stylesModal from "../page.module.css"
 import { titleFont } from "../config/fonts"
+import Modal from "./Modal"
 
 interface Errors {
   name?: string
@@ -12,45 +12,53 @@ interface Errors {
 }
 
 const ContactForm = () => {
-
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [open, setOpen] = useState(false)
   const [errors, setErrors] = useState<Errors>({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const expresions = {
     userEmail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-.]+$/
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    let isError = false
-    let errors: Errors = {}
-
+  const validateFrom = () => {
+    let newErrors: Errors = {};
     if(!name.trim()){
-      errors.name = 'El campo del nombre esta vacío'
-      isError= true
-    }
-    if(!email.trim()){
-      errors.email = 'El campo del email esta vacío'
-      isError= true
-    }else if(!expresions.userEmail.test(email) ){
-      errors.email = 'El formato del email esta incorrecto'
-      isError= true
+      newErrors.name = 'El campo del nombre esta vacío'
     }
     if(!message.trim()){
-      errors.message = 'El campo del email esta vacío'
-      isError= true
+      newErrors.message = 'El campo del email esta vacío'
     }
-    setErrors(errors);
+    if(!email.trim()){
+      newErrors.email = 'El campo del email esta vacío'
+    }else if(!expresions.userEmail.test(email) ){
+      newErrors.email = 'El formato del email esta incorrecto'
+    }
+    return newErrors
+  }
+  
+  useEffect(() => {
+    if (!isSubmitted) return;
+    const newErrors = validateFrom()
+    setErrors(newErrors);
+  }, [name, email, message, isSubmitted]);
 
-    if(!isError){
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitted(true);
+
+    const newErrors = validateFrom()
+    setErrors(newErrors);
+
+    if(Object.keys(newErrors).length === 0){
       setOpen(true)
       setEmail('')
       setName('')
       setMessage('')
       setErrors({})
+      setIsSubmitted(false);
     }
   }
 
@@ -67,12 +75,11 @@ const ContactForm = () => {
         <h1 className={`${titleFont.className} ${styles.title}`}>Formulario</h1>
         <div className={styles.input__cont}>
             <input 
-              className={errors.name ? styles.input__error : styles.input__form}
+              className={`${styles.input__form} ${errors.name ? (styles.input__error) : (name.length>=1 && styles.input__validate)}`}
               type="text" 
               id="name"
               name="name"
               value={name}
-              required
               onChange={(e) => setName(e.target.value)}
             />
           <label htmlFor="name" className={styles.label}>
@@ -82,11 +89,10 @@ const ContactForm = () => {
         {errors.name && <p className={styles.message__error}>{errors.name}</p>}
         <div className={styles.input__cont}>
             <input 
-              className={errors.email ? styles.input__error : styles.input__form}
+              className={`${styles.input__form} ${errors.email  ? (styles.input__error) : (email.length>=1 && styles.input__validate) }`}
               type="email" 
               id="email"
               name="email"
-              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -97,10 +103,9 @@ const ContactForm = () => {
         {errors.email && <p className={styles.message__error}>{errors.email}</p>}
         <div className={styles.input__cont}>
           <textarea 
-            className={`${errors.message ? styles.textarea__error : styles.input__form} ${styles.textarea}`}
+            className={`${styles.textarea} ${errors.message  ? (styles.textarea__error) : (message.length>=1 && styles.input__validate) }`}
             name="message" 
             id="message"
-            required
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
@@ -112,13 +117,8 @@ const ContactForm = () => {
         <button type="submit" className={styles.btn__primary} >Enviar</button>
       </form>
 
-      <article className={`${stylesModal.modal} ${open ? stylesModal.moda : stylesModal.modal__close}`} onClick={closeModal}>
-        <div className={stylesModal.modal__dialog}>
-          <button className={stylesModal.btn__close} onClick={closeModal}>X</button>
-          <h1 className={stylesModal.modal__title}>¡Bien hecho!</h1>
-          <p className={stylesModal.modal__info}>La información se envió correctamente</p>
-        </div>
-      </article>
+      <Modal open={open} closeModal={closeModal}/>
+
     </div>
   )
 }

@@ -57,6 +57,7 @@
       }
 
       .input__form{
+        position: relative;
         width: 100%;
         color: white;
         border-radius:5px;
@@ -65,19 +66,30 @@
         border: 1px solid #19EB00;
         outline: none;
 
-        &:valid{
-          border: 1px solid #19EB00;
-          background-color: transparent;
-        }
-
         &:focus{
           background-color: transparent;
           border: 2px solid #19EB00;
           box-shadow: 2px 2px 2px #18eb008b;
         }
 
-        &:focus ~ label,
-        &:valid ~ label{
+        & ~ label{
+          color: white;
+          padding: 0 15px;
+          background-color: #111E3E;
+        }
+
+        &:focus ~ label{
+          color: white;
+          top: 0;
+          font-style: 16px;
+          padding: 0 15px;
+          background-color: #111E3E;
+        }
+      }
+
+      .input__validate{
+        & ~ label{
+          color: white;
           top: 0;
           padding: 0 15px;
           background-color: #111E3E;
@@ -94,10 +106,16 @@
         color: white;
         border: 2px solid red;
 
-        &:valid ~ label{
+        & ~ label{
           color: red;
           background-color: #111E3E;
           padding: 4px 8px;
+        }
+        
+        &:focus{
+          background-color: transparent;
+          border: 2px solid red;
+          box-shadow: 2px 2px 2px rgba(255, 0, 0, 0.432);
         }
 
         &:focus ~ label{
@@ -110,9 +128,10 @@
       }
 
       .textarea{
+        position: relative;
+        background-color: transparent;
         border: 1px solid #19EB00;
         border-radius: 5px;
-        background-color: #111E3E;
         padding: 20px 20px;
         color: white;
         resize: none;
@@ -121,24 +140,29 @@
         width: 100%;
         outline: none;
 
-        &:valid{
-          border: 1px solid #19EB00;
-        }
         &:focus{
+          background-color: transparent;
           border: 2px solid #19EB00;
           box-shadow: 2px 2px 2px #18eb008b;
         }
 
-        &:focus ~ label,
-        &:valid ~ label{
+        &:focus ~ label{
+          color: white;
           top: 0;
           font-style: 16px;
+          padding: 0 15px;
+          background-color: #111E3E;
+        }
+
+
+        & ~ label{
           padding: 0 15px;
           background-color: #111E3E;
         }
       }
 
       .textarea__error{
+        position: relative;
         border: 2px solid red;
         border-radius: 5px;
         background-color: #111E3E;
@@ -149,6 +173,27 @@
         max-height: 300px;
         width: 100%;
         outline: none;
+
+        & ~ label{
+          color: red;
+          background-color: #111E3E;
+          padding: 4px 8px;
+        }
+
+        &:focus{
+          background-color: transparent;
+          border: 2px solid red;
+          box-shadow: 2px 2px 2px rgba(255, 0, 0, 0.432);
+        }
+
+        &:focus ~ label{
+          color: red;
+          top: 0;
+          font-style: 16px;
+          padding: 0 15px;
+          background-color: #111E3E;
+        }
+        
       }
     }
   }
