@@ -1,6 +1,6 @@
 'use client'
 
-import { FormEvent, useEffect, useState } from "react"
+import { FormEvent, useCallback, useEffect, useState } from "react"
 import styles from "./contactForm.module.css"
 import { titleFont } from "../config/fonts"
 import Modal from "./Modal"
@@ -23,33 +23,34 @@ const ContactForm = () => {
     userEmail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-.]+$/
   }
 
-  const validateFrom = () => {
-    let newErrors: Errors = {};
-    if(!name.trim()){
-      newErrors.name = 'El campo del nombre esta vacío'
-    }
-    if(!message.trim()){
-      newErrors.message = 'El campo del email esta vacío'
-    }
-    if(!email.trim()){
-      newErrors.email = 'El campo del email esta vacío'
-    }else if(!expresions.userEmail.test(email) ){
-      newErrors.email = 'El formato del email esta incorrecto'
-    }
-    return newErrors
-  }
+  const validateForm = useCallback(()=>{
+      let newErrors: Errors = {};
+      if(!name.trim()){
+        newErrors.name = 'El campo del nombre esta vacío'
+      }
+      if(!message.trim()){
+        newErrors.message = 'El campo del email esta vacío'
+      }
+      if(!email.trim()){
+        newErrors.email = 'El campo del email esta vacío'
+      }else if(!expresions.userEmail.test(email) ){
+        newErrors.email = 'El formato del email esta incorrecto'
+      }
+      return newErrors
+    
+  }, [email, message, name, expresions.userEmail])
   
   useEffect(() => {
     if (!isSubmitted) return;
-    const newErrors = validateFrom()
+    const newErrors = validateForm()
     setErrors(newErrors);
-  }, [name, email, message, isSubmitted]);
+  }, [name, email, message, isSubmitted, validateForm]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitted(true);
 
-    const newErrors = validateFrom()
+    const newErrors = validateForm()
     setErrors(newErrors);
 
     if(Object.keys(newErrors).length === 0){
@@ -71,7 +72,7 @@ const ContactForm = () => {
       
       <div className={styles.prueba}></div>
 
-      <form className={styles.form} onSubmit={handleSubmit} autoComplete="off">
+      <form className={styles.form__content} onSubmit={handleSubmit} autoComplete="off">
         <h1 className={`${titleFont.className} ${styles.title}`}>Formulario</h1>
         <div className={styles.input__cont}>
             <input 
@@ -82,34 +83,34 @@ const ContactForm = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          <label htmlFor="name" className={styles.label}>
+          <label htmlFor="name" className={styles.labelText}>
             Nombre
           </label>
         </div>
         {errors.name && <p className={styles.message__error}>{errors.name}</p>}
         <div className={styles.input__cont}>
             <input 
-              className={`${styles.input__form} ${errors.email  ? (styles.input__error) : (email.length>=1 && styles.input__validate) }`}
+              className={`${styles.input__form} ${errors.email  ? (styles.input__error) : (email.length>0 && styles.input__validate) }`}
               type="email" 
               id="email"
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label htmlFor="email" className={styles.label}>
+            <label htmlFor="email" className={styles.labelText}>
             Email
           </label>
         </div>
         {errors.email && <p className={styles.message__error}>{errors.email}</p>}
         <div className={styles.input__cont}>
           <textarea 
-            className={`${styles.textarea} ${errors.message  ? (styles.textarea__error) : (message.length>=1 && styles.input__validate) }`}
+            className={`${styles.textarea__form} ${errors.message  ? (styles.textarea__error) : (message.length>0 && styles.input__validate) }`}
             name="message" 
             id="message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-        <label htmlFor="message" className={styles.label}>
+        <label htmlFor="message" className={styles.labelText}>
           Deja tu mensaje
         </label>
         </div>

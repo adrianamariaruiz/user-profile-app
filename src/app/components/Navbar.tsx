@@ -7,9 +7,9 @@ import { titleFont } from "../config/fonts"
 const Navbar = () => {
   return (
     <div>
-      <nav className={styles.nav}>
+      <nav className={styles.nav__content}>
         <p className={`${titleFont.className} ${styles.username}`}>{users[0].name} {users[0].lastName}</p>
-        <div className={styles.image}>
+        <div className={styles.image__avatar}>
           <Image 
             src={users[0].avatar}
             alt="photo" 

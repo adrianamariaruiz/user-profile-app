@@ -23,7 +23,7 @@
   display: flex;
   justify-content: center;
 
-  .form{
+  .form__content{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,7 +47,7 @@
       position: relative;
       width: 100%;
 
-      .label{
+      .labelText{
         position: absolute;
         top: 50%;
         left: 15px;
@@ -72,13 +72,13 @@
           box-shadow: 2px 2px 2px #18eb008b;
         }
 
-        & ~ label{
+        & ~ .labelText{
           color: white;
           padding: 0 15px;
           background-color: #111E3E;
         }
 
-        &:focus ~ label{
+        &:focus ~ .labelText{
           color: white;
           top: 0;
           font-style: 16px;
@@ -88,11 +88,8 @@
       }
 
       .input__validate{
-        & ~ label{
-          color: white;
+        & ~ .labelText{
           top: 0;
-          padding: 0 15px;
-          background-color: #111E3E;
         }
       }
 
@@ -106,7 +103,7 @@
         color: white;
         border: 2px solid red;
 
-        & ~ label{
+        & ~ .labelText{
           color: red;
           background-color: #111E3E;
           padding: 4px 8px;
@@ -118,7 +115,7 @@
           box-shadow: 2px 2px 2px rgba(255, 0, 0, 0.432);
         }
 
-        &:focus ~ label{
+        &:focus ~ .labelText{
           color: red;
           top: 0;
           font-style: 16px;
@@ -127,7 +124,7 @@
         }
       }
 
-      .textarea{
+      .textarea__form{
         position: relative;
         background-color: transparent;
         border: 1px solid #19EB00;
@@ -146,7 +143,7 @@
           box-shadow: 2px 2px 2px #18eb008b;
         }
 
-        &:focus ~ label{
+        &:focus ~ .labelText{
           color: white;
           top: 0;
           font-style: 16px;
@@ -155,7 +152,7 @@
         }
 
 
-        & ~ label{
+        & ~ .labelText{
           padding: 0 15px;
           background-color: #111E3E;
         }
@@ -174,7 +171,7 @@
         width: 100%;
         outline: none;
 
-        & ~ label{
+        & ~ .labelText{
           color: red;
           background-color: #111E3E;
           padding: 4px 8px;
@@ -186,7 +183,7 @@
           box-shadow: 2px 2px 2px rgba(255, 0, 0, 0.432);
         }
 
-        &:focus ~ label{
+        &:focus ~ .labelText{
           color: red;
           top: 0;
           font-style: 16px;

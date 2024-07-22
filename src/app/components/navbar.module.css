@@ -1,4 +1,4 @@
-.nav{
+.nav__content{
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -20,7 +20,7 @@
     font-weight: bold;
   }
 
-  .image{
+  .image__avatar{
     border-radius: 50%;
     overflow: hidden;
     display: flex;
@@ -30,7 +30,7 @@
 }
 
 @media (width > 768px){
-  .nav{
+  .nav__content{
     justify-content: end;
     gap: 20px;
   }
